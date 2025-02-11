@@ -127,21 +127,10 @@ end
 
 function Player:move(dt)
     if love.keyboard.isDown("d","right") then
-        if self.xVel < self.maxSpeed then
-            if self.xVel + self.accerlation * dt < self.maxSpeed then
-                self.xVel = self.xVel + self.accerlation * dt
-            else
-                self.xVel = self.maxSpeed
-            end
-        end
+        self.xVel = math.min(self.xVel + self.accerlation * dt, self.maxSpeed)
     elseif love.keyboard.isDown("a", "left") then
-        if self.xVel > -self.maxSpeed then
-            if self.xVel - self.accerlation * dt > -self.maxSpeed then
-                self.xVel = self.xVel - self.accerlation * dt
-            else
-                self.xVel = -self.maxSpeed
-            end
-        end
+        self.xVel = math.max(self.xVel - self.accerlation * dt, -self.maxSpeed)
+      
     else
         self:applyFriction(dt)
     end
