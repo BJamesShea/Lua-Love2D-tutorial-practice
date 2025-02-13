@@ -16,7 +16,6 @@ end
 function love.update(dt)
     World:update(dt)
     Player:update(dt)
-    
 end
 
 function love.draw()
